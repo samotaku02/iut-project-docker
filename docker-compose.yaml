@@ -2,4 +2,17 @@ services:
   app:
     build: .
     ports:
-      - "8080:8080"
+      - "80:8080"
+    environment:
+      - APP_USER=There
+      - SPRING_DATA_REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:8
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
